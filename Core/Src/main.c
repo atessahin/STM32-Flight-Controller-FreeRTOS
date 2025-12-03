@@ -90,11 +90,6 @@ int main(void)
     Raw_Data_Queue = xQueueCreate(5, sizeof(RawData_t));
     Display_Queue  = xQueueCreate(1, sizeof(Attitude_t));
 
-    i2cMutex = xSemaphoreCreateMutex();
-    Raw_Data_Queue = xQueueCreate(5, sizeof(RawData_t));
-    Display_Queue  = xQueueCreate(1, sizeof(Attitude_t));
-
-
     xTaskCreate(SensorTask, "ReadSensors",  512, NULL, 3, &sensor); // High
     xTaskCreate(FusionTask, "SensorFusion", 512, NULL, 2, &fusion); // Medium
     xTaskCreate(DisplayTask,"OLED_Screen",  1024, NULL, 1, &display); // Low
@@ -251,3 +246,4 @@ void assert_failed(uint8_t *file, uint32_t line)
     while(1); // Infinite loop on assertion failure
 }
 #endif
+
