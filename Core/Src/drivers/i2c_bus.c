@@ -46,7 +46,7 @@ uint8_t i2cWrite(uint8_t deviceAddr, uint8_t registerAddr, uint8_t *data, uint16
     volatile uint32_t temp = I2C1->SR1;
     temp = I2C1->SR2; // Clear ADDR flag by reading SR1 then SR2
 
-    // 4. Send Register Address
+    //Send Register Address
     I2C1->DR = registerAddr;
 
     timeout = I2C_TIMEOUT;
@@ -196,3 +196,4 @@ void i2c_software_reset(void)
     I2C1->CR1 &= ~(1<<0);  // PE=0 (Disable)
     I2C1->CR1 |= (1<<0);   // PE=1 (Enable)
 }
+
